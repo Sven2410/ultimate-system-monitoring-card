@@ -166,7 +166,7 @@ class UltimateSystemMonitoringCard extends HTMLElement {
     const { state } = s;
     if (state === 'unavailable') return 'N/B';
     if (state === 'unknown')     return '?';
-    const n = parseFloat(state);
+    const n = Number(state);          // strict: '192.168.1.229' → NaN (geen false positive)
     const unit = this._unit(id);
     if (!isNaN(n)) {
       const rounded = Math.round(n * 10) / 10;
